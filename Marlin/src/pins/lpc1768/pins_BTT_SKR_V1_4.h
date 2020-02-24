@@ -35,7 +35,7 @@
 //
 // Servos
 //
-#define SERVO0_PIN         P2_00
+#define SERVO0_PIN         P0_10
 
 //
 // TMC StallGuard DIAG pins
@@ -86,7 +86,7 @@
 // Z Probe (when not Z_MIN_PIN)
 //
 #ifndef Z_MIN_PROBE_PIN
-  #define Z_MIN_PROBE_PIN  P0_10
+  #define Z_MIN_PROBE_PIN  P2_00
 #endif
 
 //
@@ -242,6 +242,34 @@
 
     #define LCD_PINS_ENABLE P1_21
     #define LCD_PINS_D4    P1_19
+
+
+  #elif ENABLED(ZONESTAR_LCD)
+/**
+ *                _____
+ *            5V | · · | GND
+ *       D4 1.23 | · · | 1.22
+ *       D5 1.21 | · ·   1.20 LCD_RS
+ *       D6 1.19 | · · | 1.18 LCD_EN
+ *       D7 0.28 | · · | 1.30 ADC_KEYPAD
+ *                -----
+ *                EXP1
+ *                _____
+ *            D7 | · · | ADC_KEYPAD
+ *            D6 | · · | LCD_EN
+ *            D5 | · ·   LCD_RS
+ *            D4 | · · | NC
+ *           +5V | · · | GND
+ *                -----
+ *             ZONESTAR LCD
+ */
+    #define LCD_PINS_RS      P1_20
+    #define LCD_PINS_ENABLE  P1_18
+    #define LCD_PINS_D4      P1_23
+    #define LCD_PINS_D5      P1_21
+    #define LCD_PINS_D6      P1_19
+    #define LCD_PINS_D7      P0_28
+    #define ADC_KEYPAD_PIN   P1_30 // ACD Channel 4, not 5V tolerant
 
   #elif ENABLED(CR10_STOCKDISPLAY)
     #define BTN_ENC        P0_28   // (58) open-drain

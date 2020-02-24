@@ -298,6 +298,7 @@ void menu_advanced_settings();
 
   void menu_preheat_material1_settings() { _menu_configuration_preheat_settings(0); }
   void menu_preheat_material2_settings() { _menu_configuration_preheat_settings(1); }
+  void menu_preheat_material3_settings() { _menu_configuration_preheat_settings(2); }
 
 #endif
 
@@ -385,6 +386,7 @@ void menu_configuration() {
     // Preheat configurations
     SUBMENU(MSG_PREHEAT_1_SETTINGS, menu_preheat_material1_settings);
     SUBMENU(MSG_PREHEAT_2_SETTINGS, menu_preheat_material2_settings);
+    SUBMENU(MSG_PREHEAT_3_SETTINGS, menu_preheat_material3_settings);
   #endif
 
   #if ENABLED(EEPROM_SETTINGS)

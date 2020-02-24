@@ -454,8 +454,8 @@ public:
       static constexpr int8_t manual_move_e_index = 0;
     #endif
 
-    static int16_t preheat_hotend_temp[2], preheat_bed_temp[2];
-    static uint8_t preheat_fan_speed[2];
+    static int16_t preheat_hotend_temp[3], preheat_bed_temp[3];
+    static uint8_t preheat_fan_speed[3];
 
     // Select Screen (modal NO/YES style dialog)
     static bool selection;

@@ -40,8 +40,8 @@
 #endif
 
 // Initialized by settings.load()
-int16_t MarlinUI::preheat_hotend_temp[2], MarlinUI::preheat_bed_temp[2];
-uint8_t MarlinUI::preheat_fan_speed[2];
+int16_t MarlinUI::preheat_hotend_temp[3], MarlinUI::preheat_bed_temp[3];
+uint8_t MarlinUI::preheat_fan_speed[3];
 
 //
 // "Temperature" submenu items
@@ -149,6 +149,34 @@ void _lcd_preheat(const int16_t endnum, const int16_t temph, const int16_t tempb
     #endif // HOTENDS > 1
     #if HAS_HEATED_BED
       ACTION_ITEM(MSG_PREHEAT_2_BEDONLY, []{ _preheat_bed(1); });
+    #endif
+    END_MENU();
+  }
+
+  void menu_preheat_m3() {
+    START_MENU();
+    BACK_ITEM(MSG_TEMPERATURE);
+    #if HOTENDS == 1
+      #if HAS_HEATED_BED
+        ACTION_ITEM(MSG_PREHEAT_3, []{ _preheat_both(2, 0); });
+        ACTION_ITEM(MSG_PREHEAT_3_END, []{ _preheat_end(2, 0); });
+      #else
+        ACTION_ITEM(MSG_PREHEAT_3, []{ _preheat_end(2, 0); });
+      #endif
+    #elif HOTENDS > 1
+      #if HAS_HEATED_BED
+        _PREHEAT_ITEMS(3,0);
+      #endif
+      for (uint8_t n = 1; n < HOTENDS; n++) PREHEAT_ITEMS(3,n);
+      ACTION_ITEM(MSG_PREHEAT_3_ALL, []() {
+        #if HAS_HEATED_BED
+          _preheat_bed(2);
+        #endif
+        HOTEND_LOOP() thermalManager.setTargetHotend(ui.preheat_hotend_temp[2], e);
+      });
+    #endif // HOTENDS > 1
+    #if HAS_HEATED_BED
+      ACTION_ITEM(MSG_PREHEAT_3_BEDONLY, []{ _preheat_bed(2); });
     #endif
     END_MENU();
   }
@@ -274,9 +302,11 @@ void menu_temperature() {
     #if TEMP_SENSOR_1 != 0 || TEMP_SENSOR_2 != 0 || TEMP_SENSOR_3 != 0 || TEMP_SENSOR_4 != 0 || TEMP_SENSOR_5 != 0 || TEMP_SENSOR_6 != 0 || TEMP_SENSOR_7 != 0 || HAS_HEATED_BED
       SUBMENU(MSG_PREHEAT_1, menu_preheat_m1);
       SUBMENU(MSG_PREHEAT_2, menu_preheat_m2);
+      SUBMENU(MSG_PREHEAT_3, menu_preheat_m3);
     #else
       ACTION_ITEM(MSG_PREHEAT_1, []{ _preheat_end(0, 0); });
       ACTION_ITEM(MSG_PREHEAT_2, []{ _preheat_end(1, 0); });
+      ACTION_ITEM(MSG_PREHEAT_3, []{ _preheat_end(2, 0); });
     #endif
 
     //
