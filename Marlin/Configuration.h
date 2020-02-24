@@ -926,8 +926,8 @@
 // When the pin is defined you can use M672 to set/reset the probe sensivity.
 //#define DUET_SMART_EFFECTOR
 #if ENABLED(DUET_SMART_EFFECTOR)
- #define SMART_EFFECTOR_MOD_PIN  -1  // Connect a GPIO pin to the Smart Effector MOD pin
-#endif 
+  #define SMART_EFFECTOR_MOD_PIN  -1  // Connect a GPIO pin to the Smart Effector MOD pin
+#endif
 
 //
 // For Z_PROBE_ALLEN_KEY see the Delta example configurations.
@@ -1076,7 +1076,7 @@
 //#define UNKNOWN_Z_NO_RAISE      // Don't raise Z (lower the bed) if Z is "unknown." For beds that fall when Z is powered off.
 
 //#define Z_HOMING_HEIGHT  4      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
-                                 // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.
+                                  // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.
 
 //#define Z_AFTER_HOMING  10      // (mm) Height to move to after homing Z
 
