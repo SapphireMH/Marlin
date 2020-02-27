@@ -35,7 +35,7 @@
 //
 // Servos
 //
-#define SERVO0_PIN         P0_10
+#define SERVO0_PIN         P2_00
 
 //
 // TMC StallGuard DIAG pins
@@ -86,7 +86,7 @@
 // Z Probe (when not Z_MIN_PIN)
 //
 #ifndef Z_MIN_PROBE_PIN
-  #define Z_MIN_PROBE_PIN  P2_00
+  #define Z_MIN_PROBE_PIN  P0_10
 #endif
 
 //
