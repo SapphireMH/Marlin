@@ -482,28 +482,26 @@
   #define PID_FUNCTIONAL_RANGE 15 // If the temperature difference between the target temperature and the actual temperature
                                   // is more than PID_FUNCTIONAL_RANGE then the PID will be shut off and the heater will be set to min/max.
 
-  // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
+  #define PID_PLA
+  //#define PID_PETG
+  //#define PID_ABS
 
-  // Ultimaker
-  //#define DEFAULT_Kp 22.2
-  //#define DEFAULT_Ki 1.08
-  //#define DEFAULT_Kd 114
-
-  // MakerGear
-  //#define DEFAULT_Kp 7.0
-  //#define DEFAULT_Ki 0.1
-  //#define DEFAULT_Kd 12
-
-  // Mendel Parts V9 on 12V
-  //#define DEFAULT_Kp 63.0
-  //#define DEFAULT_Ki 2.25
-  //#define DEFAULT_Kd 440
-
-  // ANET A8 Standard Extruder at 210 Degree Celsius and 100% Fan
-  //(measured after M106 S255 with M303 E0 S210 C8)
-  #define DEFAULT_Kp 41.17
-  #define DEFAULT_Ki 3.42
-  #define DEFAULT_Kd 123.95
+  #if ENABLED(PID_PLA)
+    #define DEFAULT_Kp 33.44
+    #define DEFAULT_Ki 2.35
+    #define DEFAULT_Kd 118.97
+    //measured with M106 S255 with M303 E0 S210 C8
+  #elif ENABLED(PID_PETG)
+    #define DEFAULT_Kp 0
+    #define DEFAULT_Ki 0
+    #define DEFAULT_Kd 0
+    //measured with M106 S0 with M303 E0 S225 C8
+  #elif ENABLED(PID_ABS)
+    #define DEFAULT_Kp 0
+    #define DEFAULT_Ki 0
+    #define DEFAULT_Kd 0
+    //measured with M106 S255 with M303 E0 S225 C8
+  #endif
 
 #endif // PIDTEMP
 
@@ -524,9 +522,9 @@
  * heater. If your configuration is significantly different than this and you don't understand
  * the issues involved, don't use bed PID until someone else verifies that your hardware works.
  */
-//#define PIDTEMPBED
+#define PIDTEMPBED
 
-#define BED_LIMIT_SWITCHING
+//#define BED_LIMIT_SWITCHING
 
 /**
  * Max Bed Power
@@ -540,19 +538,23 @@
   //#define MIN_BED_POWER 0
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
-  //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
-  //from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  //#define DEFAULT_bedKp 10.00
-  //#define DEFAULT_bedKi .023
-  //#define DEFAULT_bedKd 305.4
+  #if ENABLED(PID_PLA)
+    #define DEFAULT_bedKp 73.53
+    #define DEFAULT_bedKi 14.13
+    #define DEFAULT_bedKd 255.14
+    //measured with M303 E-1 C8 S55
+  #elif ENABLED(PID_PETG)
+    #define DEFAULT_bedKp 73.53
+    #define DEFAULT_bedKi 14.13
+    #define DEFAULT_bedKd 255.14
+    //measured with M303 E-1 C8 S55
+  #elif ENABLED(PID_ABS)
+    #define DEFAULT_bedKp 62.70
+    #define DEFAULT_bedKi 9.39
+    #define DEFAULT_bedKd 279.12
+    //measured with M303 E-1 C8 S95
+  #endif
 
-  //120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
-  //from pidautotune
-  //#define DEFAULT_bedKp 97.1
-  //#define DEFAULT_bedKi 1.41
-  //#define DEFAULT_bedKd 1675.16
-
-  // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
 
 // @section extruder
@@ -953,7 +955,7 @@
  *
  * Specify a Probe position as { X, Y, Z }
  */
-#define NOZZLE_TO_PROBE_OFFSET { -26, -40, -3.6 }
+#define NOZZLE_TO_PROBE_OFFSET { -26, -40, -3.75 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1439,9 +1441,9 @@
  *   M501 - Read settings from EEPROM. (i.e., Throw away unsaved changes)
  *   M502 - Revert settings to "factory" defaults. (Follow with M500 to init the EEPROM.)
  */
-#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
+//#define EEPROM_SETTINGS     // Persistent storage with M500 and M501
 //#define DISABLE_M503        // Saves ~2700 bytes of PROGMEM. Disable for release!
-#define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
+//#define EEPROM_CHITCHAT       // Give feedback on EEPROM commands. Disable to save PROGMEM.
 #if ENABLED(EEPROM_SETTINGS)
   //#define EEPROM_AUTO_INIT  // Init EEPROM automatically on any errors.
 #endif
