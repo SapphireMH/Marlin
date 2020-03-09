@@ -492,14 +492,14 @@
     #define DEFAULT_Kd 118.97
     //measured with M106 S255 with M303 E0 S210 C8
   #elif ENABLED(PID_PETG)
-    #define DEFAULT_Kp 0
-    #define DEFAULT_Ki 0
-    #define DEFAULT_Kd 0
+    #define DEFAULT_Kp 30.00
+    #define DEFAULT_Ki 1.90
+    #define DEFAULT_Kd 118.25
     //measured with M106 S0 with M303 E0 S225 C8
   #elif ENABLED(PID_ABS)
-    #define DEFAULT_Kp 0
-    #define DEFAULT_Ki 0
-    #define DEFAULT_Kd 0
+    #define DEFAULT_Kp 48.02
+    #define DEFAULT_Ki 3.63
+    #define DEFAULT_Kd 158.87
     //measured with M106 S255 with M303 E0 S225 C8
   #endif
 
@@ -1092,14 +1092,14 @@
 
 // The size of the print bed
 #define X_BED_SIZE 220
-#define Y_BED_SIZE 220
+#define Y_BED_SIZE 240
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
 #define X_MIN_POS -41
-#define Y_MIN_POS -15
+#define Y_MIN_POS -7
 #define Z_MIN_POS 0
 #define X_MAX_POS X_BED_SIZE
-#define Y_MAX_POS Y_BED_SIZE
+#define Y_MAX_POS Y_BED_SIZE - 2
 #define Z_MAX_POS 240
 
 /**
@@ -1211,7 +1211,7 @@
  * Normally G28 leaves leveling disabled on completion. Enable
  * this option to have G28 restore the prior leveling state.
  */
-//#define RESTORE_LEVELING_AFTER_G28
+#define RESTORE_LEVELING_AFTER_G28
 
 /**
  * Enable detailed logging of G28, G29, M48, etc.
