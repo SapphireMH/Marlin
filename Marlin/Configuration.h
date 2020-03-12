@@ -487,19 +487,19 @@
   //#define PID_ABS
 
   #if ENABLED(PID_PLA)
-    #define DEFAULT_Kp 33.44
-    #define DEFAULT_Ki 2.35
-    #define DEFAULT_Kd 118.97
+    #define DEFAULT_Kp 25.88
+    #define DEFAULT_Ki 1.99
+    #define DEFAULT_Kd 84.19
     //measured with M106 S255 with M303 E0 S210 C8
   #elif ENABLED(PID_PETG)
-    #define DEFAULT_Kp 30.00
-    #define DEFAULT_Ki 1.90
-    #define DEFAULT_Kd 118.25
+    #define DEFAULT_Kp 26.05
+    #define DEFAULT_Ki 2.05
+    #define DEFAULT_Kd 82.74
     //measured with M106 S0 with M303 E0 S225 C8
   #elif ENABLED(PID_ABS)
-    #define DEFAULT_Kp 48.02
-    #define DEFAULT_Ki 3.63
-    #define DEFAULT_Kd 158.87
+    #define DEFAULT_Kp 31.62
+    #define DEFAULT_Ki 2.71
+    #define DEFAULT_Kd 92.15
     //measured with M106 S255 with M303 E0 S225 C8
   #endif
 
@@ -539,19 +539,20 @@
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
   #if ENABLED(PID_PLA)
-    #define DEFAULT_bedKp 73.53
-    #define DEFAULT_bedKi 14.13
-    #define DEFAULT_bedKd 255.14
+    #define DEFAULT_bedKp 77.06
+    #define DEFAULT_bedKi 15.40
+    #define DEFAULT_bedKd 257.11
     //measured with M303 E-1 C8 S55
   #elif ENABLED(PID_PETG)
-    #define DEFAULT_bedKp 73.53
-    #define DEFAULT_bedKi 14.13
-    #define DEFAULT_bedKd 255.14
+    #define DEFAULT_bedKp 77.06
+    #define DEFAULT_bedKi 15.40
+    #define DEFAULT_bedKd 257.11
     //measured with M303 E-1 C8 S55
   #elif ENABLED(PID_ABS)
-    #define DEFAULT_bedKp 62.70
-    #define DEFAULT_bedKi 9.39
-    #define DEFAULT_bedKd 279.12
+    #define DEFAULT_bedKp 79.21
+    #define DEFAULT_bedKi 15.20
+    #define DEFAULT_bedKd 275.11
+
     //measured with M303 E-1 C8 S95
   #endif
 
