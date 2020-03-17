@@ -396,15 +396,6 @@
   #endif
 #endif
 
-#if HAS_GRAPHICAL_LCD
-  #ifndef LCD_PIXEL_WIDTH
-    #define LCD_PIXEL_WIDTH 128
-  #endif
-  #ifndef LCD_PIXEL_HEIGHT
-    #define LCD_PIXEL_HEIGHT 64
-  #endif
-#endif
-
 /**
  * Extruders have some combination of stepper motors and hotends
  * so we separate these concepts into the defines:
