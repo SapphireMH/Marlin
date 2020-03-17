@@ -105,7 +105,7 @@
 // Power Supply Control
 //
 #ifndef PS_ON_PIN
-  #define PS_ON_PIN        P1_00   // PWRDET
+  #define PS_ON_PIN        P1_25   // PWRDET
 #endif
 
 //
