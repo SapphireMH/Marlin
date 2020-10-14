@@ -16,7 +16,7 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 
@@ -68,7 +68,7 @@ static SlowSoftI2CMaster pots[DIGIPOT_I2C_NUM_CHANNELS] = {
   #endif
 };
 
-static void i2c_send(const uint8_t channel, const byte v) {
+static void digipot_i2c_send(const uint8_t channel, const byte v) {
   if (WITHIN(channel, 0, DIGIPOT_I2C_NUM_CHANNELS - 1)) {
     pots[channel].i2c_start(((DIGIPOT_I2C_ADDRESS_A) << 1) | I2C_WRITE);
     pots[channel].i2c_write(v);
@@ -94,7 +94,7 @@ void digipot_i2c_init() {
     #endif
   ;
   LOOP_L_N(i, COUNT(digipot_motor_current))
-    digipot_i2c_set_current(i, pgm_read_float(&digipot_motor_current[i]));
+    set_current(i, pgm_read_float(&digipot_motor_current[i]));
 }
 
 #endif // DIGIPOT_MCP4018

@@ -64,45 +64,13 @@ Marlin 2.0 introduces a layer of abstraction so that all the existing high-level
   [SAMD51P20A](https://www.adafruit.com/product/4064)|ARM® Cortex-M4|Adafruit Grand Central M4
   [Teensy 3.5](https://www.pjrc.com/store/teensy35.html)|ARM® Cortex-M4|
   [Teensy 3.6](https://www.pjrc.com/store/teensy36.html)|ARM® Cortex-M4|
+  [Teensy 4.0](https://www.pjrc.com/store/teensy40.html)|ARM® Cortex-M7|
+  [Teensy 4.1](https://www.pjrc.com/store/teensy41.html)|ARM® Cortex-M7|
 
 ## Submitting Changes
 
-  boards|processor|speed|flash|sram|logic|fpu
-  ----|---------|-----|-----|----|-----|---
-  [Arduino STM32](https://github.com/rogerclarkmelbourne/Arduino_STM32)|[STM32F1](https://www.st.com/en/microcontrollers-microprocessors/stm32f103.html) ARM-Cortex M3|72MHz|256-512k|48-64k|3.3V|no
-  [Geeetech3D GTM32](https://github.com/Geeetech3D/Diagram/blob/master/Rostock301/Hardware_GTM32_PRO_VB.pdf)|[STM32F1](https://www.st.com/en/microcontrollers-microprocessors/stm32f103.html) ARM-Cortex M3|72MHz|256-512k|48-64k|3.3V|no
-
-  #### STM32F4
-
-  boards|processor|speed|flash|sram|logic|fpu
-  ----|---------|-----|-----|----|-----|---
-  [STEVAL-3DP001V1](http://www.st.com/en/evaluation-tools/steval-3dp001v1.html)|[STM32F401VE Arm-Cortex M4](http://www.st.com/en/microcontrollers/stm32f401ve.html)|84MHz|512k|64+32k|3.3-5V|yes
-
-  #### Teensy++ 2.0
-
-  boards|processor|speed|flash|sram|logic|fpu
-  ----|---------|-----|-----|----|-----|---
-  [Teensy++ 2.0](http://www.microchip.com/wwwproducts/en/AT90USB1286)|[AT90USB1286](http://www.microchip.com/wwwproducts/en/AT90USB1286)|16MHz|128k|8k|5V|no
-
-  #### Teensy 3.1 / 3.2
-
-  boards|processor|speed|flash|sram|logic|fpu
-  ----|---------|-----|-----|----|-----|---
-  [Teensy 3.2](https://www.pjrc.com/store/teensy32.html)|[MK20DX256VLH7](https://www.mouser.com/ProductDetail/NXP-Freescale/MK20DX256VLH7) ARM-Cortex M4|72MHz|256k|32k|3.3V-5V|yes
-
-  #### Teensy 3.5 / 3.6
-
-  boards|processor|speed|flash|sram|logic|fpu
-  ----|---------|-----|-----|----|-----|---
-  [Teensy 3.5](https://www.pjrc.com/store/teensy35.html)|[MK64FX512VMD12](https://www.mouser.com/ProductDetail/NXP-Freescale/MK64FX512VMD12) ARM-Cortex M4|120MHz|512k|192k|3.3-5V|yes
-  [Teensy 3.6](https://www.pjrc.com/store/teensy36.html)|[MK66FX1M0VMD18](https://www.mouser.com/ProductDetail/NXP-Freescale/MK66FX1M0VMD18) ARM-Cortex M4|180MHz|1M|256k|3.3V|yes
-
-## Submitting Patches
-
-Proposed patches should be submitted as a Pull Request against the ([bugfix-2.0.x](https://github.com/MarlinFirmware/Marlin/tree/bugfix-2.0.x)) branch.
-
-- This branch is for fixing bugs and integrating any new features for the duration of the Marlin 2.0.x life-cycle.
-- Follow the [Coding Standards](https://marlinfw.org/docs/development/coding_standards.html) to gain points with the maintainers.
+- Submit **Bug Fixes** as Pull Requests to the ([bugfix-2.0.x](https://github.com/MarlinFirmware/Marlin/tree/bugfix-2.0.x)) branch.
+- Follow the [Coding Standards](http://marlinfw.org/docs/development/coding_standards.html) to gain points with the maintainers.
 - Please submit your questions and concerns to the [Issue Queue](https://github.com/MarlinFirmware/Marlin/issues).
 
 ## Marlin Support
@@ -113,7 +81,7 @@ For best results getting help with configuration and troubleshooting, please use
 - [Marlin Discord](https://discord.gg/n5NJ59y) - Discuss issues with Marlin users and developers
 - Facebook Group ["Marlin Firmware"](https://www.facebook.com/groups/1049718498464482/)
 - RepRap.org [Marlin Forum](http://forums.reprap.org/list.php?415)
-- [Tom's 3D Forums](https://discuss.toms3d.org/)
+- [Tom's 3D Forums](https://forum.toms3d.org/)
 - Facebook Group ["Marlin Firmware for 3D Printers"](https://www.facebook.com/groups/3Dtechtalk/)
 - [Marlin Configuration](https://www.youtube.com/results?search_query=marlin+configuration) on YouTube
 
@@ -121,12 +89,11 @@ For best results getting help with configuration and troubleshooting, please use
 
 The current Marlin dev team consists of:
 
- - Scott Lahteine [[@thinkyhead](https://github.com/thinkyhead)] - USA &nbsp; [Donate](http://www.thinkyhead.com/donate-to-marlin) / Flattr: [![Flattr Scott](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=thinkyhead&url=https://github.com/MarlinFirmware/Marlin&title=Marlin&language=&tags=github&category=software)
+ - Scott Lahteine [[@thinkyhead](https://github.com/thinkyhead)] - USA &nbsp; [Donate](http://www.thinkyhead.com/donate-to-marlin)
  - Roxanne Neufeld [[@Roxy-3D](https://github.com/Roxy-3D)] - USA
  - Chris Pepper [[@p3p](https://github.com/p3p)] - UK
  - Bob Kuhn [[@Bob-the-Kuhn](https://github.com/Bob-the-Kuhn)] - USA
- - João Brazio [[@jbrazio](https://github.com/jbrazio)] - Portugal
- - Erik van der Zalm [[@ErikZalm](https://github.com/ErikZalm)] - Netherlands &nbsp; [![Flattr Erik](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=ErikZalm&url=https://github.com/MarlinFirmware/Marlin&title=Marlin&language=&tags=github&category=software)
+ - Erik van der Zalm [[@ErikZalm](https://github.com/ErikZalm)] - Netherlands &nbsp; [![Flattr Erik](https://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=ErikZalm&url=https://github.com/MarlinFirmware/Marlin&title=Marlin&language=&tags=github&category=software)
 
 ## License
 

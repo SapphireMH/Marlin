@@ -16,12 +16,12 @@
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * along with this program.  If not, see <https://www.gnu.org/licenses/>.
  *
  */
 #pragma once
 
-#ifndef TARGET_STM32F1
+#if NOT_TARGET(TARGET_STM32F1)
   #error "Oops! Select an STM32F1 board in 'Tools > Board.'"
 #endif
 
@@ -31,11 +31,11 @@
 #define DISABLE_JTAG
 
 // Ignore temp readings during development.
-//#define BOGUS_TEMPERATURE_GRACE_PERIOD 2000
+//#define BOGUS_TEMPERATURE_GRACE_PERIOD    2000
 
 #if EITHER(NO_EEPROM_SELECTED, FLASH_EEPROM_EMULATION)
   #define FLASH_EEPROM_EMULATION
-  #define EEPROM_PAGE_SIZE     (0x800U) // 2KB
+  #define EEPROM_PAGE_SIZE     (0x800U)           // 2KB
   #define EEPROM_START_ADDRESS (0x8000000UL + (STM32_FLASH_SIZE) * 1024UL - (EEPROM_PAGE_SIZE) * 2UL)
   #define MARLIN_EEPROM_SIZE    EEPROM_PAGE_SIZE  // 2KB
 #endif
@@ -117,10 +117,10 @@
    * Hardware serial communication ports.
    * If undefined software serial is used according to the pins below
    */
-  //#define X_HARDWARE_SERIAL  Serial1
-  //#define Y_HARDWARE_SERIAL  Serial1
-  //#define Z_HARDWARE_SERIAL  Serial1
-  //#define E0_HARDWARE_SERIAL Serial1
+  //#define X_HARDWARE_SERIAL  MSerial1
+  //#define Y_HARDWARE_SERIAL  MSerial1
+  //#define Z_HARDWARE_SERIAL  MSerial1
+  //#define E0_HARDWARE_SERIAL MSerial1
 
   //
   // Software serial
@@ -138,7 +138,7 @@
   #define E0_SERIAL_RX_PIN                  PD2
 
   // Reduce baud rate to improve software serial reliability
-  #define TMC_BAUD_RATE 19200
+  #define TMC_BAUD_RATE                    19200
 #endif
 
 //
@@ -158,7 +158,7 @@
 // USB connect control
 //
 #define USB_CONNECT_PIN                     PC13
-#define USB_CONNECT_INVERTING false
+#define USB_CONNECT_INVERTING              false
 
 /**
  *                 _____
@@ -171,7 +171,7 @@
  *                 EXP1
  */
 
-#if HAS_SPI_LCD
+#if HAS_WIRED_LCD
 
   #if ENABLED(CR10_STOCKDISPLAY)
 
@@ -187,7 +187,7 @@
 
   #elif ENABLED(ZONESTAR_LCD)                     // ANET A8 LCD Controller - Must convert to 3.3V - CONNECTING TO 5V WILL DAMAGE THE BOARD!
 
-    #error "CAUTION! ZONESTAR_LCD requires wiring modifications. See 'pins_BTT_SKR_MINI_E3.h' for details. Comment out this line to continue."
+    #error "CAUTION! ZONESTAR_LCD requires wiring modifications. See 'pins_BTT_SKR_MINI_E3_common.h' for details. Comment out this line to continue."
 
     #define LCD_PINS_RS                     PB9
     #define LCD_PINS_ENABLE                 PB6
@@ -222,10 +222,51 @@
     #define LCD_BACKLIGHT_PIN               -1
 
   #else
-    #error "Only CR10_STOCKDISPLAY, ZONESTAR_LCD, ENDER2_STOCKDISPLAY, and MKS_MINI_12864 are currently supported on the BIGTREE_SKR_E3_DIP."
+    #error "Only CR10_STOCKDISPLAY, ZONESTAR_LCD, ENDER2_STOCKDISPLAY, MKS_MINI_12864, and MKS_LCD12864 are currently supported on the BIGTREE_SKR_E3_DIP."
   #endif
 
-#endif // HAS_SPI_LCD
+#endif // HAS_WIRED_LCD
+
+#if BOTH(TOUCH_UI_FTDI_EVE, LCD_FYSETC_TFT81050)
+
+  #error "CAUTION! LCD_FYSETC_TFT81050 requires wiring modifications. See 'pins_BTT_SKR_E3_DIP.h' for details. Comment out this line to continue."
+
+  /** FYSETC TFT TFT81050 display pinout
+   *
+   *               Board                                     Display
+   *               _____                                      _____
+   *           5V | 1 2 | GND               (SPI1-MISO) MISO | 1 2 | SCK   (SPI1-SCK)
+   * (FREE)   PB7 | 3 4 | PB8  (LCD_CS)     (PA9)  MOD_RESET | 3 4 | SD_CS (PA10)
+   * (FREE)   PB9 | 5 6   PA10 (SD_CS)      (PB8)     LCD_CS | 5 6   MOSI  (SPI1-MOSI)
+   *        RESET | 7 8 | PA9  (MOD_RESET)  (PA15)    SD_DET | 7 8 | RESET
+   * (BEEPER) PB6 | 9 10| PA15 (SD_DET)                  GND | 9 10| 5V
+   *               -----                                      -----
+   *                EXP1                                       EXP1
+   *
+   * Needs custom cable:
+   *
+   *    Board   Adapter   Display
+   *           _________
+   *   EXP1-1 ----------- EXP1-10
+   *   EXP1-2 ----------- EXP1-9
+   *   SPI1-4 ----------- EXP1-6
+   *   EXP1-4 ----------- EXP1-5
+   *   SP11-3 ----------- EXP1-2
+   *   EXP1-6 ----------- EXP1-4
+   *   EXP1-7 ----------- EXP1-8
+   *   EXP1-8 ----------- EXP1-3
+   *   SPI1-1 ----------- EXP1-1
+   *  EXP1-10 ----------- EXP1-7
+   */
+
+  #define CLCD_SPI_BUS                         1  // SPI1 connector
+
+  #define BEEPER_PIN                        PB6
+
+  #define CLCD_MOD_RESET                    PA9
+  #define CLCD_SPI_CS                       PA8
+
+#endif // TOUCH_UI_FTDI_EVE && LCD_FYSETC_TFT81050
 
 #if BOTH(TOUCH_UI_FTDI_EVE, LCD_FYSETC_TFT81050)
 
@@ -279,14 +320,12 @@
 
 #if SD_CONNECTION_IS(ONBOARD)
   #define SD_DETECT_PIN                     PC4
-#endif
-
-#if BOTH(TOUCH_UI_FTDI_EVE, LCD_FYSETC_TFT81050) && SD_CONNECTION_IS(LCD)
+#elif SD_CONNECTION_IS(LCD) && BOTH(TOUCH_UI_FTDI_EVE, LCD_FYSETC_TFT81050)
   #define SD_DETECT_PIN                     PA15
   #define SS_PIN                            PA10
 #elif SD_CONNECTION_IS(CUSTOM_CABLE)
   #error "SD CUSTOM_CABLE is not compatible with SKR E3 DIP."
 #endif
 
-#define ON_BOARD_SPI_DEVICE 1                     // SPI1
+#define ONBOARD_SPI_DEVICE                     1  // SPI1
 #define ONBOARD_SD_CS_PIN                   PA4   // Chip select for "System" SD card
