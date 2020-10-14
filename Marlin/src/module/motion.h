@@ -133,11 +133,6 @@ inline float home_bump_mm(const AxisEnum axis) {
   return pgm_read_any(&home_bump_mm_P[axis]);
 }
 
-inline float home_bump_mm(const AxisEnum axis) {
-  static const xyz_pos_t home_bump_mm_P PROGMEM = HOMING_BUMP_MM;
-  return pgm_read_any(&home_bump_mm_P[axis]);
-}
-
 #if HAS_WORKSPACE_OFFSET
   void update_workspace_offset(const AxisEnum axis);
 #else

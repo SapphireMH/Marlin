@@ -329,7 +329,7 @@
 #define PSU_NAME "BTT relay v1.2"
 
 #if ENABLED(PSU_CONTROL)
-  #define PSU_ACTIVE_HIGH true     // Set 'false' for ATX, 'true' for X-Box
+  #define PSU_ACTIVE_STATE true     // Set 'false' for ATX, 'true' for X-Box
 
   //#define PSU_DEFAULT_OFF         // Keep power off until enabled directly with M80
   //#define PSU_POWERUP_DELAY 250   // (ms) Delay for the PSU to warm up to full power
@@ -496,23 +496,6 @@
   //#define PID_PETG
   //#define PID_ABS
 
-  #if ENABLED(PID_PLA)
-    #define DEFAULT_Kp 25.88
-    #define DEFAULT_Ki 1.99
-    #define DEFAULT_Kd 84.19
-    //measured with M106 S255 with M303 E0 S210 C8
-  #elif ENABLED(PID_PETG)
-    #define DEFAULT_Kp 26.05
-    #define DEFAULT_Ki 2.05
-    #define DEFAULT_Kd 82.74
-    //measured with M106 S0 with M303 E0 S225 C8
-  #elif ENABLED(PID_ABS)
-    #define DEFAULT_Kp 31.62
-    #define DEFAULT_Ki 2.71
-    #define DEFAULT_Kd 92.15
-    //measured with M106 S255 with M303 E0 S225 C8
-  #endif
-
   #if ENABLED(PID_PARAMS_PER_HOTEND)
     // Specify between 1 and HOTENDS values per array.
     // If fewer than EXTRUDER values are provided, the last element will be repeated.
@@ -520,9 +503,22 @@
     #define DEFAULT_Ki_LIST {   1.08,   1.08 }
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
-    #define DEFAULT_Kp  22.20
-    #define DEFAULT_Ki   1.08
-    #define DEFAULT_Kd 114.00
+    #if ENABLED(PID_PLA)
+      #define DEFAULT_Kp 25.88
+      #define DEFAULT_Ki 1.99
+      #define DEFAULT_Kd 84.19
+      //measured with M106 S255 with M303 E0 S210 C8
+    #elif ENABLED(PID_PETG)
+      #define DEFAULT_Kp 26.05
+      #define DEFAULT_Ki 2.05
+      #define DEFAULT_Kd 82.74
+      //measured with M106 S0 with M303 E0 S225 C8
+    #elif ENABLED(PID_ABS)
+      #define DEFAULT_Kp 31.62
+      #define DEFAULT_Ki 2.71
+      #define DEFAULT_Kd 92.15
+      //measured with M106 S255 with M303 E0 S225 C8
+    #endif
   #endif
 #endif // PIDTEMP
 
@@ -2446,7 +2442,7 @@
  * Set this manually if there are extra servos needing manual control.
  * Set to 0 to turn off servo support.
  */
-//#define NUM_SERVOS 3 // Servo index starts with 0 for M280 command
+#define NUM_SERVOS 1 // Servo index starts with 0 for M280 command
 
 // (ms) Delay  before the next move will start, to give the servo time to reach its target angle.
 // 300ms is a good value but you can try less delay.
