@@ -24,6 +24,8 @@
 
 #if ENABLED(DIGIPOT_MCP4018)
 
+#include "digipot.h"
+
 #include <Stream.h>
 #include <SlowSoftI2CMaster.h>  // https://github.com/stawel/SlowSoftI2CMaster
 
@@ -77,12 +79,12 @@ static void digipot_i2c_send(const uint8_t channel, const byte v) {
 }
 
 // This is for the MCP4018 I2C based digipot
-void digipot_i2c_set_current(const uint8_t channel, const float current) {
+void DigipotI2C::set_current(const uint8_t channel, const float current) {
   const float ival = _MIN(_MAX(current, 0), float(DIGIPOT_MCP4018_MAX_VALUE));
-  i2c_send(channel, current_to_wiper(ival));
+  digipot_i2c_send(channel, current_to_wiper(ival));
 }
 
-void digipot_i2c_init() {
+void DigipotI2C::init() {
   LOOP_L_N(i, DIGIPOT_I2C_NUM_CHANNELS) pots[i].i2c_init();
 
   // Init currents according to Configuration_adv.h

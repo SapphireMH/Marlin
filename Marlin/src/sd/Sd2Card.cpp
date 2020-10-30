@@ -561,6 +561,10 @@ bool Sd2Card::writeBlock(uint32_t blockNumber, const uint8_t* src) {
     return 0 == SDHC_CardWriteBlock(src, blockNumber);
   #endif
 
+  #if IS_TEENSY_35_36 || IS_TEENSY_40_41
+    return 0 == SDHC_CardWriteBlock(src, blockNumber);
+  #endif
+
   bool success = false;
   if (type() != SD_CARD_TYPE_SDHC) blockNumber <<= 9;   // Use address if not SDHC card
   if (!cardCommand(CMD24, blockNumber)) {

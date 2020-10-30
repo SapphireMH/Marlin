@@ -151,11 +151,6 @@ void _goto_manual_move(const float scale) {
 
 void _menu_move_distance(const AxisEnum axis, const screenFunc_t func, const int8_t eindex=-1) {
   _manual_move_func_ptr = func;
-  #if ENABLED(PREVENT_COLD_EXTRUSION)
-    const bool too_cold = axis == E_AXIS && thermalManager.tooColdToExtrude(eindex >= 0 ? eindex : active_extruder);
-  #else
-    constexpr bool too_cold = false;
-  #endif
   START_MENU();
   if (LCD_HEIGHT >= 4) {
     switch (axis) {
