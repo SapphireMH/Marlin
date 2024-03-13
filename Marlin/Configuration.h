@@ -657,20 +657,20 @@
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
     #if ENABLED(PID_PLA)
-      #define DEFAULT_Kp 25.88
-      #define DEFAULT_Ki 1.99
-      #define DEFAULT_Kd 84.19
-      //measured with M106 S255 with M303 E0 S210 C8
+      #define DEFAULT_Kp 42.35
+      #define DEFAULT_Ki 4.30
+      #define DEFAULT_Kd 104.18
+      //measured with M106 S204 with M303 E0 S210 C8 [enclosure opened]
     #elif ENABLED(PID_PETG)
-      #define DEFAULT_Kp 26.05
-      #define DEFAULT_Ki 2.05
-      #define DEFAULT_Kd 82.74
-      //measured with M106 S0 with M303 E0 S225 C8
+      #define DEFAULT_Kp 73.11
+      #define DEFAULT_Ki 10.38
+      #define DEFAULT_Kd 128.67
+      //measured with M106 S0 with M303 E0 S225 C8 [enclosure closed]
     #elif ENABLED(PID_ABS)
-      #define DEFAULT_Kp 31.62
-      #define DEFAULT_Ki 2.71
-      #define DEFAULT_Kd 92.15
-      //measured with M106 S255 with M303 E0 S225 C8
+      #define DEFAULT_Kp 110.89
+      #define DEFAULT_Ki 21.00
+      #define DEFAULT_Kd 146.38
+      //measured with M106 S0 with M303 E0 S240 C8 [enclosure closed]
     #endif
   #endif
 #endif
@@ -751,21 +751,20 @@
   //#define PID_BED_DEBUG // Sends debug data to the serial port.
 
   #if ENABLED(PID_PLA)
-    #define DEFAULT_bedKp 77.06
-    #define DEFAULT_bedKi 15.40
-    #define DEFAULT_bedKd 257.11
-    //measured with M303 E-1 C8 S55
+    #define DEFAULT_bedKp 74.12
+    #define DEFAULT_bedKi 14.48
+    #define DEFAULT_bedKd 252.99
+    //measured with M303 E-1 C8 S55 [enclosure opened]
   #elif ENABLED(PID_PETG)
-    #define DEFAULT_bedKp 77.06
-    #define DEFAULT_bedKi 15.40
-    #define DEFAULT_bedKd 257.11
-    //measured with M303 E-1 C8 S55
+    #define DEFAULT_bedKp 73.40
+    #define DEFAULT_bedKi 14.34
+    #define DEFAULT_bedKd 250.55
+    //measured with M303 E-1 C8 S55 [enclosure closed]
   #elif ENABLED(PID_ABS)
-    #define DEFAULT_bedKp 79.21
-    #define DEFAULT_bedKi 15.20
-    #define DEFAULT_bedKd 275.11
-
-    //measured with M303 E-1 C8 S95
+    #define DEFAULT_bedKp 101.49
+    #define DEFAULT_bedKi 19.82
+    #define DEFAULT_bedKd 346.43
+    //measured with M303 E-1 C8 S90 [enclosure closed]
   #endif
 
 #endif // PIDTEMPBED
@@ -1307,7 +1306,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -26, -40, -5.30 }
+#define NOZZLE_TO_PROBE_OFFSET { -26, -40, -3.20 }
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
