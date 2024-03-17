@@ -2008,7 +2008,7 @@
   // After a runout is detected, continue printing this length of filament
   // before executing the runout script. Useful for a sensor at the end of
   // a feed tube. Requires 4 bytes SRAM per sensor, plus 4 bytes overhead.
-  #define FILAMENT_RUNOUT_DISTANCE_MM 3
+  #define FILAMENT_RUNOUT_DISTANCE_MM 7
 
   #ifdef FILAMENT_RUNOUT_DISTANCE_MM
     // Enable this option to use an encoder disc that toggles the runout pin
@@ -2020,11 +2020,11 @@
       #define FILAMENT_SWITCH_AND_MOTION
       #if ENABLED(FILAMENT_SWITCH_AND_MOTION)
         #define NUM_MOTION_SENSORS   1          // Number of sensors, up to one per extruder. Define a FIL_MOTION#_PIN for each.
-        #define FIL_MOTION1_PIN    PC2
+        #define FIL_MOTION1_PIN    PG12
 
         // Override individually if the motion sensors vary
         //#define FIL_MOTION1_STATE LOW
-        //#define FIL_MOTION1_PULLUP
+        #define FIL_MOTION1_PULLUP
         //#define FIL_MOTION1_PULLDOWN
 
         //#define FIL_MOTION2_STATE LOW
@@ -2338,7 +2338,7 @@
 #endif
 
 // Homing speeds (linear=mm/min, rotational=°/min)
-#define HOMING_FEEDRATE_MM_M { (25*60), (25*60), (4*60) }
+#define HOMING_FEEDRATE_MM_M { (20*60), (20*60), (4*60) }
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
